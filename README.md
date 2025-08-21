@@ -57,8 +57,23 @@ A powerful AI-powered CLI tool that revolutionizes the `git commit` process by a
    - Display them in an interactive menu
    - Wait for you to select your preferred message
    - Commit your changes with the selected message
+   - Ask if you want to push the commit to your remote repository (GitHub)
+
+4. After committing, you'll be asked:
+   ```
+   ? Would you like to push the commit to remote repository (GitHub)? (y/N)
+   ```
+   - If you select "Yes", the tool will push your commit to the remote repository
+   - If you select "No", you can push manually later using `git push`
 
 **Note**: If you see an error about "No staged changes found", it means you haven't staged any files yet. Use `git add` to stage your changes first.
+
+### Understanding Local Commits vs Remote Pushes
+
+- **Local Commit**: When you commit changes, they are saved to your local git repository
+- **Remote Push**: When you push changes, they are uploaded to your remote repository (like GitHub)
+- The tool first creates a local commit, then optionally pushes it to the remote repository
+- If you don't push immediately, your commit exists locally but won't be visible on GitHub until you push it
 
 ## Example Workflow
 

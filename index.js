@@ -95,6 +95,34 @@ const commitChanges = async (message) => {
   }
 };
 
+// Function to push changes to remote repository
+const pushChanges = async () => {
+  try {
+    console.log(chalk.blue('\n📤 Pushing changes to remote repository...'));
+    await execa('git', ['push']);
+    console.log(chalk.green.bold('\n✔ Changes pushed to remote successfully!'));
+  } catch (error) {
+    console.error(chalk.yellow('\n⚠ Warning: Failed to push changes to remote.'));
+    console.error(chalk.yellow('The commit was created locally but not pushed to GitHub.'));
+    console.error(chalk.yellow('You can push manually using: git push'));
+    console.error(chalk.gray('Error details:'), error.message);
+    // Don't exit here as the commit was successful locally
+  }
+};
+
+// Function to ask if user wants to push to remote
+const askToPush = async () => {
+  const { shouldPush } = await inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'shouldPush',
+      message: 'Would you like to push the commit to remote repository (GitHub)?',
+      default: false,
+    },
+  ]);
+  return shouldPush;
+};
+
 // Main function to orchestrate the entire process
 const main = async () => {
   console.log(chalk.blue.bold('🤖 Git Commit Crafter'));
@@ -119,6 +147,14 @@ const main = async () => {
   // Step 5: Show success message
   console.log(chalk.green.bold('\n✔ Commit successful!'));
   console.log(chalk.gray(`Committed with: "${selectedMessage}"`));
+
+  // Step 6: Ask if user wants to push to remote
+  const shouldPush = await askToPush();
+  if (shouldPush) {
+    await pushChanges();
+  } else {
+    console.log(chalk.blue('\n💡 Tip: You can push your changes later using "git push"'));
+  }
 };
 
 // Run the main function
