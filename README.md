@@ -100,9 +100,13 @@ npm run sync
 ```
 
 This command will:
-- Pull latest changes from the remote repository
+- Check for uncommitted changes and prompt you to commit them first
+- Pull latest changes from the remote repository using merge strategy
+- Automatically handle divergent branches by configuring merge strategy
 - Push your local changes to the remote repository
-- Handle any conflicts if they arise
+- Provide detailed instructions if merge conflicts occur
+
+**Note**: If merge conflicts occur, the tool will provide step-by-step instructions to resolve them manually.
 
 ### 4. Clean Up Repository
 

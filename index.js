@@ -197,10 +197,33 @@ const syncWithRemote = async () => {
   try {
     console.log(chalk.blue.bold('🔄 Syncing with Remote Repository'));
     
-    // Pull latest changes
+    // Check if there are any uncommitted changes
+    const { stdout: statusOutput } = await execa('git', ['status', '--porcelain']);
+    if (statusOutput) {
+      console.log(chalk.yellow('\n⚠ You have uncommitted changes. Please commit or stash them before syncing.'));
+      console.log(chalk.yellow('You can use "npm start" to commit your changes.'));
+      return;
+    }
+    
+    // Pull latest changes with merge strategy to handle divergent branches
     console.log(chalk.blue('\n⬇️ Pulling latest changes from remote...'));
-    await execa('git', ['pull']);
-    console.log(chalk.green('✅ Successfully pulled latest changes'));
+    try {
+      await execa('git', ['pull', '--no-rebase']);
+      console.log(chalk.green('✅ Successfully pulled latest changes'));
+    } catch (pullError) {
+      if (pullError.message.includes('divergent branches') || pullError.message.includes('Need to specify how to reconcile divergent branches')) {
+        console.log(chalk.yellow('\n⚠ Divergent branches detected. Using merge strategy to reconcile...'));
+        
+        // Configure pull to use merge instead of rebase for this repository
+        await execa('git', ['config', 'pull.rebase', 'false']);
+        
+        // Try pulling again with merge strategy
+        await execa('git', ['pull']);
+        console.log(chalk.green('✅ Successfully merged remote changes'));
+      } else {
+        throw pullError;
+      }
+    }
     
     // Push local changes
     console.log(chalk.blue('\n⬆️ Pushing local changes to remote...'));
@@ -211,7 +234,21 @@ const syncWithRemote = async () => {
     
   } catch (error) {
     console.error(chalk.red('Error syncing with remote:'), error.message);
-    console.error(chalk.yellow('You may need to resolve conflicts manually'));
+    
+    // Check if it's a merge conflict
+    if (error.message.includes('merge conflict') || error.message.includes('CONFLICT')) {
+      console.error(chalk.red('\n❌ Merge conflicts detected!'));
+      console.error(chalk.yellow('Please resolve the conflicts manually and then run the sync command again.'));
+      console.error(chalk.cyan('Steps to resolve conflicts:'));
+      console.error(chalk.cyan('1. Open the conflicted files and look for <<<<<<<, =======, and >>>>>>> markers'));
+      console.error(chalk.cyan('2. Edit the files to resolve the conflicts'));
+      console.error(chalk.cyan('3. Run "git add ." to mark conflicts as resolved'));
+      console.error(chalk.cyan('4. Run "git commit" to complete the merge'));
+      console.error(chalk.cyan('5. Run "npm run sync" again to complete the synchronization'));
+    } else {
+      console.error(chalk.yellow('You may need to resolve conflicts manually'));
+    }
+    
     process.exit(1);
   }
 };
