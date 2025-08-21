@@ -1,6 +1,3 @@
-// Imports
-//imports
-
 import { execa } from 'execa';
 import axios from 'axios';
 import inquirer from 'inquirer';
