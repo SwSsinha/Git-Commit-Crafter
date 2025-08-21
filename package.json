@@ -5,14 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "node index.js"
   },
   "keywords": [
     "git",
     "commit",
     "ai",
     "cli",
-    "glm-4.5"
+    "glm-4"
   ],
   "author": "",
   "license": "MIT",

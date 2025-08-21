@@ -1,10 +1,10 @@
 # Git Commit Crafter 🤖
 
-A powerful AI-powered CLI tool that revolutionizes the `git commit` process by automatically generating professional commit messages based on your staged code changes using the GLM-4.5 AI model.
+A powerful AI-powered CLI tool that revolutionizes the `git commit` process by automatically generating professional commit messages based on your staged code changes using the GLM-4 AI model.
 
 ## Features
 
-- 🧠 **AI-Powered**: Uses GLM-4.5 AI to analyze your code changes and generate professional commit messages
+- 🧠 **AI-Powered**: Uses GLM-4 AI to analyze your code changes and generate professional commit messages
 - 📝 **Conventional Commits**: Follows the Conventional Commits specification (feat, fix, chore, etc.)
 - 🎯 **Interactive Selection**: Presents multiple AI-generated options in an interactive menu
 - 🎨 **Beautiful UI**: Features loading spinners and colored terminal output for a premium experience
@@ -15,7 +15,7 @@ A powerful AI-powered CLI tool that revolutionizes the `git commit` process by a
 
 - Node.js (v14 or higher)
 - Git installed and configured
-- GLM-4.5 API key
+- GLM-4 API key
 
 ## Installation
 
@@ -27,7 +27,7 @@ A powerful AI-powered CLI tool that revolutionizes the `git commit` process by a
 
 ## Configuration
 
-1. Get your GLM-4.5 API key
+1. Get your GLM-4 API key from https://open.bigmodel.cn/
 2. Edit the `.env` file and replace `your_api_key_here` with your actual API key:
    ```
    API_KEY=your_actual_api_key_here
@@ -39,19 +39,26 @@ A powerful AI-powered CLI tool that revolutionizes the `git commit` process by a
    ```bash
    git add .
    ```
+   **Important**: You must stage at least one file before running the tool. The tool only works with staged changes.
 
 2. Run the Git Commit Crafter:
    ```bash
    npm start
    ```
+   or
+   ```bash
+   npm run dev
+   ```
 
 3. The tool will:
    - Read your staged changes
-   - Send them to the GLM-4.5 AI for analysis
+   - Send them to the GLM-4 AI for analysis
    - Generate 5 professional commit message options
    - Display them in an interactive menu
    - Wait for you to select your preferred message
    - Commit your changes with the selected message
+
+**Note**: If you see an error about "No staged changes found", it means you haven't staged any files yet. Use `git add` to stage your changes first.
 
 ## Example Workflow
 
@@ -89,7 +96,7 @@ npm start
 ## How It Works
 
 1. **Reading Changes**: The tool uses `git diff --staged` to read all staged changes
-2. **AI Analysis**: Changes are sent to the GLM-4.5 AI with a carefully crafted prompt
+2. **AI Analysis**: Changes are sent to the GLM-4 AI with a carefully crafted prompt
 3. **Message Generation**: The AI generates 5 commit messages following Conventional Commits format
 4. **Interactive Selection**: Users can navigate and select their preferred message using arrow keys
 5. **Automatic Commit**: The selected message is used to commit the changes
@@ -105,7 +112,7 @@ The tool includes comprehensive error handling for:
 ## Dependencies
 
 - `execa`: For executing git commands
-- `axios`: For communicating with the GLM-4.5 API
+- `axios`: For communicating with the GLM-4 API
 - `inquirer`: For creating interactive CLI menus
 - `ora`: For displaying loading spinners
 - `chalk`: For adding colors to terminal output

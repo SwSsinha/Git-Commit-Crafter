@@ -12,9 +12,20 @@ dotenv.config();
 const getStagedDiff = async () => {
   try {
     const { stdout } = await execa('git', ['diff', '--staged']);
+    
+    // Check if stdout is empty (no staged changes)
+    if (!stdout || stdout.trim() === '') {
+      console.error(chalk.red('Error: No staged changes found.'));
+      console.error(chalk.yellow('Please stage your files using "git add" before running this tool.'));
+      console.error(chalk.cyan('Example: git add .'));
+      process.exit(1);
+    }
+    
     return stdout;
   } catch (error) {
-    console.error(chalk.red('Error: No staged changes found. Please stage your files before committing.'));
+    console.error(chalk.red('Error: Failed to read staged changes.'));
+    console.error(chalk.yellow('Make sure you are in a git repository and have staged some changes.'));
+    console.error(chalk.cyan('Example: git add .'));
     process.exit(1);
   }
 };
@@ -43,8 +54,8 @@ const getAiSuggestions = async (diff) => {
   }
 
   try {
-    const response = await axios.post('https://api.z.ai/v1/chat/completions', {
-      model: 'glm-4.5',
+    const response = await axios.post('https://open.bigmodel.cn/api/paas/v4/chat/completions', {
+      model: 'glm-4',
       messages: [{ role: 'user', content: prompt }],
     }, {
       headers: { 'Authorization': `Bearer ${apiKey}` }
@@ -115,3 +126,4 @@ main().catch(error => {
   console.error(chalk.red('An unexpected error occurred:'), error.message);
   process.exit(1);
 });
+
