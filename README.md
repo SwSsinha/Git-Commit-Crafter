@@ -207,6 +207,7 @@ The tool includes comprehensive error handling for:
 - Missing API key configuration
 - API communication failures
 - Git command failures
+- Divergent branches and merge conflicts
 
 ## Dependencies
 
@@ -216,6 +217,134 @@ The tool includes comprehensive error handling for:
 - `ora`: For displaying loading spinners
 - `chalk`: For adding colors to terminal output
 - `dotenv`: For managing environment variables
+
+## Video Demo Guide
+
+### Introduction to the Project
+1. **Project Overview**:
+   - Explain what Git Commit Crafter is
+   - Mention the problem it solves (generating professional commit messages)
+   - Highlight the additional GitHub maintenance features
+
+2. **Tech Stack**:
+   - Node.js and ES modules
+   - GLM-4 AI for commit message generation
+   - Dependencies: execa, axios, inquirer, ora, chalk, dotenv
+
+### Setup and Installation
+1. **Prerequisites**:
+   - Show Node.js version check: `node -v`
+   - Show Git installation: `git --version`
+
+2. **Installation Steps**:
+   - Clone the repository: `git clone https://github.com/SwSsinha/Git-Commit-Crafter.git`
+   - Navigate to the project: `cd Git-Commit-Crafter`
+   - Install dependencies: `npm install`
+
+3. **Configuration**:
+   - Show the .env file and explain the API key requirement
+   - Show how to get API key from https://open.bigmodel.cn/
+   - Demonstrate setting up the API key in the .env file
+
+### Core Feature: AI-Powered Commit Messages
+1. **Basic Usage**:
+   - Make a change to a file (e.g., add a console.log statement)
+   - Stage the change: `git add .`
+   - Run the tool: `npm start`
+   - Explain the output as it appears (AI thinking, generating messages)
+
+2. **Interactive Selection**:
+   - Show the 5 AI-generated commit message options
+   - Demonstrate navigating with arrow keys
+   - Select a message and show the commit process
+
+3. **Push to Remote**:
+   - Show the prompt asking whether to push to remote
+   - Demonstrate both options (yes and no)
+   - Show the success message after pushing
+
+### Additional Features
+1. **Repository Status**:
+   - Run: `npm run status`
+   - Explain each part of the output:
+     - Modified files with status indicators
+     - Current branch information
+     - Recent commit history
+     - Remote synchronization status
+
+2. **Sync with Remote**:
+   - Explain the importance of syncing
+   - Run: `npm run sync`
+   - Show the pull and push process
+   - Explain how it handles divergent branches
+
+3. **Repository Cleanup**:
+   - Create some untracked files and merged branches
+   - Run: `npm run clean`
+   - Show the detection of untracked files and merged branches
+   - Demonstrate the cleanup process
+
+4. **Branch Management**:
+   - Run: `npm run branch`
+   - Show the list of branches with current branch highlighted
+   - Demonstrate creating a new branch
+   - Show switching between branches
+   - Demonstrate deleting a branch
+
+5. **Release Creation**:
+   - Run: `npm run release`
+   - Show the latest releases
+   - Demonstrate creating a new release with version and notes
+   - Show the success message with GitHub link
+
+### Advanced Scenarios
+1. **Handling No Staged Changes**:
+   - Try running the tool without staging changes
+   - Show the error message and explanation
+
+2. **Handling Divergent Branches**:
+   - Create a scenario with divergent branches
+   - Run: `npm run sync`
+   - Show how the tool detects and handles divergent branches
+   - Explain the merge strategy being used
+
+3. **Merge Conflict Resolution**:
+   - Create a merge conflict scenario
+   - Run: `npm run sync`
+   - Show the detailed error message and step-by-step resolution guide
+   - Demonstrate resolving conflicts manually
+
+### Project Structure and Code
+1. **File Structure**:
+   - Show the project files (index.js, package.json, README.md, .env, .gitignore)
+   - Explain the purpose of each file
+
+2. **Code Walkthrough**:
+   - Open index.js and explain the main sections:
+     - Imports and setup
+     - Core functions (getStagedDiff, getAiSuggestions, etc.)
+     - Command-line argument parsing
+     - Each feature implementation
+     - Error handling
+
+3. **Package.json**:
+   - Show the scripts section with all available commands
+   - Explain the dependencies and their purposes
+
+### Conclusion
+1. **Summary**:
+   - Recap all the features demonstrated
+   - Emphasize the time-saving benefits
+   - Highlight the beautiful CLI interface
+
+2. **Future Enhancements**:
+   - Mention potential future improvements
+   - Encourage contributions
+
+3. **Call to Action**:
+   - Encourage viewers to try the tool
+   - Ask for stars and contributions on GitHub
+   - Provide links to the repository and documentation
 
 ## Contributing
 

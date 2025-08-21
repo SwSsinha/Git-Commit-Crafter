@@ -11,6 +11,7 @@ dotenv.config();
 // Parse command line arguments
 const args = process.argv.slice(2);
 const command = args.find(arg => arg.startsWith('--'))?.replace('--', '') || 'commit';
+console.log("hey there!");
 
 // Function to get staged git diff
 const getStagedDiff = async () => {
