@@ -10,6 +10,11 @@ A powerful AI-powered CLI tool that revolutionizes the `git commit` process by a
 - 🎨 **Beautiful UI**: Features loading spinners and colored terminal output for a premium experience
 - 🔒 **Secure**: API keys stored securely in environment variables
 - 🚀 **Easy to Use**: Simple command-line interface
+- 📊 **Repository Status**: View current branch, modified files, and recent commits
+- 🔄 **Sync with Remote**: Pull latest changes and push local updates in one command
+- 🧹 **Repository Cleanup**: Remove untracked files and delete merged branches
+- 🌿 **Branch Management**: Create, switch, and delete branches with ease
+- 🚀 **Release Creation**: Create and push version tags with release notes
 
 ## Prerequisites
 
@@ -34,6 +39,10 @@ A powerful AI-powered CLI tool that revolutionizes the `git commit` process by a
    ```
 
 ## Usage
+
+The Git Commit Crafter now supports multiple commands for different GitHub maintenance tasks:
+
+### 1. Generate Commit Messages (Default)
 
 1. Stage your changes using `git add`:
    ```bash
@@ -67,6 +76,77 @@ A powerful AI-powered CLI tool that revolutionizes the `git commit` process by a
    - If you select "No", you can push manually later using `git push`
 
 **Note**: If you see an error about "No staged changes found", it means you haven't staged any files yet. Use `git add` to stage your changes first.
+
+### 2. View Repository Status
+
+Check the current status of your repository, including modified files, current branch, and recent commits:
+
+```bash
+npm run status
+```
+
+This command will display:
+- Modified files with their status (added, modified, deleted, etc.)
+- Current branch name
+- Recent commit history
+- Remote synchronization status
+
+### 3. Sync with Remote Repository
+
+Pull the latest changes from the remote repository and push your local changes in one command:
+
+```bash
+npm run sync
+```
+
+This command will:
+- Pull latest changes from the remote repository
+- Push your local changes to the remote repository
+- Handle any conflicts if they arise
+
+### 4. Clean Up Repository
+
+Remove untracked files and delete merged branches to keep your repository clean:
+
+```bash
+npm run clean
+```
+
+This command will:
+- Detect untracked files and ask if you want to remove them
+- Find merged branches and ask if you want to delete them
+- Provide a summary of cleanup actions performed
+
+### 5. Manage Branches
+
+Create, switch to, or delete branches with an interactive menu:
+
+```bash
+npm run branch
+```
+
+This command will:
+- List all available branches (local and remote)
+- Highlight the current branch
+- Provide options to:
+  - Create a new branch
+  - Switch to an existing branch
+  - Delete a branch
+
+### 6. Create a Release
+
+Create and push version tags with release notes:
+
+```bash
+npm run release
+```
+
+This command will:
+- Show the latest releases
+- Ask for a version number for the new release
+- Open an editor for release notes
+- Create and push the tag to the remote repository
+- Provide a link to view the release on GitHub
 
 ### Understanding Local Commits vs Remote Pushes
 

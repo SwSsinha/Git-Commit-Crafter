@@ -6,7 +6,12 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "node index.js"
+    "dev": "node index.js",
+    "status": "node index.js --status",
+    "sync": "node index.js --sync",
+    "clean": "node index.js --clean",
+    "branch": "node index.js --branch",
+    "release": "node index.js --release"
   },
   "keywords": [
     "git",
