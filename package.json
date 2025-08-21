@@ -1,0 +1,27 @@
+{
+  "name": "git-commit-crafter",
+  "version": "1.0.0",
+  "description": "AI-powered Git commit message generator",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "cli",
+    "glm-4.5"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "execa": "^8.0.1",
+    "axios": "^1.6.0",
+    "inquirer": "^9.2.0",
+    "ora": "^7.0.1",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.3.1"
+  }
+}
