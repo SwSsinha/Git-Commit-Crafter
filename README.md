@@ -219,9 +219,6 @@ The tool includes comprehensive error handling for:
 
 ## Contributing
 
-
-just checking if the sync is working or not
-
 Feel free to submit issues and enhancement requests!
 
 ## License
