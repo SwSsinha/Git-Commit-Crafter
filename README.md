@@ -353,7 +353,3 @@ Feel free to submit issues and enhancement requests!
 ## License
 
 MIT License - see LICENSE file for details
-
-
-
-hey there!
